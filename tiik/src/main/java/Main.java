@@ -5,10 +5,10 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
+        String projectPath = System.getProperty("user.dir");
         // pass the path to the file as a parameter
         FileReader fr =
-                new FileReader("C:\\Users\\czarek\\gitrepos\\tiik\\src\\main\\resources\\test.txt");
+                new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
 
         int i;
         while ((i=fr.read()) != -1)
