@@ -1,12 +1,12 @@
 public class Sign {
 
-    Character character;
+   private Character character;
 
-    Double probability;
+    private  Double probability;
 
-    Double unitOfInformation;
+    private  Double unitOfInformation;
 
-    Integer occurences;
+    private Integer occurences;
 
     public Character getCharacter() {
         return character;
