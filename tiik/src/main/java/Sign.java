@@ -6,7 +6,8 @@ public class Sign {
 
     private  Double unitOfInformation;
 
-    private Integer occurences;
+    private Integer occurrences;
+
 
     public Character getCharacter() {
         return character;
@@ -33,11 +34,11 @@ public class Sign {
     }
 
     public Integer getOccurences() {
-        return occurences;
+        return occurrences;
     }
 
     public void setOccurences(Integer occurences) {
-        this.occurences = occurences;
+        this.occurrences = occurences;
     }
 
 
@@ -48,7 +49,7 @@ public class Sign {
                 "character=" + character +
                 ", probability=" + probability +
                 ", unitOfInformation=" + unitOfInformation +
-                ", occurences=" + occurences +
+                ", occurences=" + occurrences +
                 '}';
     }
 }
