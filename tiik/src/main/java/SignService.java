@@ -8,7 +8,7 @@ public class SignService {
 
     private   HashMap<Character,Integer> charsMap = new HashMap<> ();
     private List<Sign> signs=new ArrayList<>();
-
+    private double entropy;
 
     private   void countChar(char inputChar){
         if (charsMap.containsKey(inputChar)) {
@@ -50,6 +50,22 @@ public class SignService {
 
     }
 
+    public double getEntropy() {
+        return entropy;
+    }
+
+    public void setEntropy() {
+
+                if(signs.size()>0){
+                    signs.forEach(sign -> {
+                        if(sign.getProbability()>0) {
+                            entropy += sign.getProbability() * unitOfInformation(sign.getProbability());
+                        }
+                    });
+
+
+                }
+    }
 
     public HashMap<Character, Integer> getCharsMap() {
         return charsMap;

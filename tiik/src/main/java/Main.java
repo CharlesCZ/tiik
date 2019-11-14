@@ -22,7 +22,8 @@ private static final SignService signService=new SignService();
 
 signService.setCharStatistics(quantity);
         //quantity of input chracters
-
+signService.setEntropy();
+        System.out.println(signService.getEntropy());
 
 
 }
