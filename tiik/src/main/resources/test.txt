@@ -1,1 +1,18 @@
-aaabbccccc
+zaokragnilc prawdopodobienstwo, dodac H(S) entropie
+
+
+wybralismy huffmana statyczna na drzewach
+
+
+
+
+kompresja bezstratna:
+dynamiczne
+kodowanie Haffmana lub Shannona-Fano albo na rzewach albo bez drzew
+statystyczna:
+
+słownikowe:
+dwie bazują na słownikach o stałej dlugości ale zmieniających się(slownik jak rejestr przesowny, wywala stare jak wklada nowe)
+
+dwie bazuja na slownikach kazdemu fragmentowmi czy literze przypisywany jest index i tym indexem zastepowany jest ciag znakow
+z tekstu, swlonik sie zmienia, bo sie rozszerzerza przy przypisywanych nowych slowach, co zrobic jak sie przepelni?
