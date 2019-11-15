@@ -27,7 +27,10 @@ public class Huffman {
     }
 
 
-
+    /**
+     * Implementation of Huffman tree alg from Thomas H. Cormen Introduction to algorithms
+     * @return Huffman tree
+     */
     public Node getHuffmanTree(){
 
         while (queue.size()>1){
@@ -60,6 +63,11 @@ public class Huffman {
         }
     }
 
+    /**
+     * method creates codes based on Huffman tree
+     * @param node  Tree root
+     * @param c empty string like ""
+     */
     public void preorder(Node node,String c){
 
 
@@ -78,6 +86,10 @@ public class Huffman {
         }
 
 
+    /**
+     * @param node Tree root
+     * @return string with which can be used to recreate HuffmanTree
+     */
     public String preorderPath(Node node){
 
 
