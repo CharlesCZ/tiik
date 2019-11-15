@@ -1,6 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -24,20 +25,42 @@ signService.setEntropy();
 */
 
 Huffman huffman=new Huffman();
-huffman.setHuffmanQueue(4);
+
 huffman.getQueue().add(new Node('A',7));
         huffman.getQueue().add(new Node('G',3));
-        huffman.getQueue().add(new Node('T',1));
         huffman.getQueue().add(new Node('C',1));
+        huffman.getQueue().add(new Node('T',1));
+            huffman.getQueue().add(new Node('X',1));
+            System.out.println( huffman.getQueue());
+       //     ((ArrayList<Node>)huffman.getQueue()).stream().min()
+          //  huffman.getQueue().add(new Node('T',1));
+       //       huffman.getQueue().add(new Node('C',1));
 
-     //   for(int i=0;i<4;++i)
-     //       System.out.println(huffman.getQueue().poll());
+         //   System.out.println(huffman.getQueue());
 
         Node root=huffman.getHuffmanTree();
-        System.out.println(root);
+     //   System.out.println(root);
+    //        huffman.traversePreOrder(root);
    //     huffman.printCode(root,"");
         huffman.preorder(root,"");
         huffman.getCodes().forEach(System.out::println);
+
+
+            System.out.println(huffman.preorderPath(root));
+
+List<Node> list=new ArrayList<>();
+list.add(new Node('G',3));
+            list.add(new Node('X',1));
+            list.add(new Node('C',2));
+
+       list=  list.stream().sorted((x,y)->x.freq - y.freq).collect(Collectors.toList());
+
+       list.add(0,new Node('Y',1));
+            System.out.println(list);
+
+            list=  list.stream().sorted((x,y)->x.freq - y.freq).collect(Collectors.toList());
+
+            System.out.println(list);
 }
 
 
