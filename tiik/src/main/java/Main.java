@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/**
+ * Part of the task was to round up to 2 decimal places
+ */
 public class Main {
 
 private static final SignService signService=new SignService();
@@ -29,11 +33,11 @@ Huffman huffman=new Huffman();
 huffman.setHuffmanQueue(10);
 
          //  huffman.getQueue().add(new Node('X',1));
-            huffman.getQueue().add(new Node('T',1));
-            huffman.getQueue().add(new Node('C',1));
-            huffman.getQueue().add(new Node('G',2));
-huffman.getQueue().add(new Node('A',5));
-
+       //     huffman.getQueue().add(new Node('T',1));
+        //    huffman.getQueue().add(new Node('C',1));
+        //    huffman.getQueue().add(new Node('G',2));
+//huffman.getQueue().add(new Node('A',5));
+huffman.insertSignsToQueue(signService.getSigns());
 
        Node root=huffman.getHuffmanTree();
             huffman.traversePreOrder(root);

@@ -18,6 +18,12 @@ class Node{
         right=null;
     }
 
+    public Node(Sign sign) {
+        this.sign = sign;
+        left=null;
+        right=null;
+    }
+
     @Override
     public String toString() {
         return " Node{" +

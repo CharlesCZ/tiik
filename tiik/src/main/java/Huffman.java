@@ -2,12 +2,24 @@ import sun.misc.Queue;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+import static java.lang.Math.round;
 public class Huffman {
 
    private PriorityQueue<Node> queue;
    private List<String> codes;
-   private String path="";
+
+
+   public PriorityQueue<Node> insertSignsToQueue(List<Sign> signs){
+
+       signs.forEach(sign -> {
+           queue.add(new Node(sign));
+
+       });
+
+       return queue;
+   }
+
+
 
     public List<String> getCodes() {
         return codes;
@@ -43,7 +55,7 @@ public class Huffman {
             System.out.println(z.right.sign.character);
             System.out.println(z.right.sign.probability);
             System.out.println("z.sign.probability");
-            z.sign.probability=z.left.sign.probability+z.right.sign.probability;
+            z.sign.probability=(double)round( 100*(z.left.sign.probability+z.right.sign.probability)  )/100;
             System.out.println( z.sign.probability);
             System.out.println("koniec");
             queue.add(z);
