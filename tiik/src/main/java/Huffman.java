@@ -1,12 +1,11 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import sun.misc.Queue;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Huffman {
 
-   private List<Node> queue=new ArrayList<>();
+   private PriorityQueue<Node> queue;
    private List<String> codes=new ArrayList<>();
    private String path="";
 
@@ -14,47 +13,42 @@ public class Huffman {
         return codes;
     }
 
-    public List<Node> getQueue() {
+    public PriorityQueue<Node> getQueue() {
         return queue;
     }
 
 
+    public void setHuffmanQueue(int size) {
+
+        queue = new PriorityQueue<>(size,(x,y)->x.freq - y.freq);
+        codes=new ArrayList<>();
+    }
 
 
 
-public Node getHuffmanTree(){
-    //queue=  queue.stream().sorted((x,y)->x.freq-y.freq).collect(Collectors.toList());
-    System.out.println(queue);
+    public Node getHuffmanTree(){
+
         while (queue.size()>1){
             Node z=new Node();
-            z.right=findMinQueue();
-            z.left=findMinQueue();
+            z.left=queue.poll();
+            System.out.println(z.left.character);
+            System.out.println(z.left.freq);
+            z.right=queue.poll();
+            System.out.println("pomiedzy");
+            System.out.println(z.right.character);
+            System.out.println(z.right.freq);
+            System.out.println("z.freq");
             z.freq=z.left.freq+z.right.freq;
-            queue.add(0,z);
-
+            System.out.println( z.freq);
+            System.out.println("koniec");
+            queue.add(z);
         }
-            return queue.get(0);
+        return queue.peek();
 
 
-}
+    }
 
 
-private Node findMinQueue(){
-
-        Node min=queue.get(0);
-
-
-        for(int i=1;i<queue.size();++i)
-        {
-            if(min.freq>queue.get(i).freq)
-                min=queue.get(i);
-
-        }
-        queue.remove(min);
-    System.out.println("MIN:"+min.character+min.freq);
-        return min;
-
-}
 
     public void traversePreOrder(Node node) {
         if (node != null) {
