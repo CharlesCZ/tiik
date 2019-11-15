@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Huffman {
 
    private PriorityQueue<Node> queue;
-   private List<String> codes=new ArrayList<>();
+   private List<String> codes;
    private String path="";
 
     public List<String> getCodes() {
@@ -20,7 +20,9 @@ public class Huffman {
 
     public void setHuffmanQueue(int size) {
 
-        queue = new PriorityQueue<>(size,(x,y)->x.freq - y.freq);
+        queue = new PriorityQueue<>(size,(x,y)->{
+            return  Double.compare(x.sign.probability,y.sign.probability);
+  });
         codes=new ArrayList<>();
     }
 
@@ -31,15 +33,15 @@ public class Huffman {
         while (queue.size()>1){
             Node z=new Node();
             z.left=queue.poll();
-            System.out.println(z.left.character);
-            System.out.println(z.left.freq);
+            System.out.println(z.left.sign.character);
+            System.out.println(z.left.sign.probability);
             z.right=queue.poll();
             System.out.println("pomiedzy");
-            System.out.println(z.right.character);
-            System.out.println(z.right.freq);
-            System.out.println("z.freq");
-            z.freq=z.left.freq+z.right.freq;
-            System.out.println( z.freq);
+            System.out.println(z.right.sign.character);
+            System.out.println(z.right.sign.probability);
+            System.out.println("z.sign.probability");
+            z.sign.probability=z.left.sign.probability+z.right.sign.probability;
+            System.out.println( z.sign.probability);
             System.out.println("koniec");
             queue.add(z);
         }
@@ -52,7 +54,7 @@ public class Huffman {
 
     public void traversePreOrder(Node node) {
         if (node != null) {
-            System.out.print(" " + node.character+node.freq+" ");
+            System.out.print(" " + node.sign.character+node.sign.probability+" ");
             traversePreOrder(node.left);
             traversePreOrder(node.right);
         }
@@ -63,7 +65,7 @@ public class Huffman {
 
         if(node.left==null && node.right==null){
 
-            codes.add(String.valueOf(node.character));
+            codes.add(String.valueOf(node.sign.character));
             codes.add(c);
             return;
         }
@@ -81,7 +83,7 @@ public class Huffman {
 
         if(node.left==null && node.right==null){
 
-            return "1"+"["+node.character+"]";
+            return "1"+"["+node.sign.character+"]";
 
         }
 
