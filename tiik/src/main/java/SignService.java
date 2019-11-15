@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 public class SignService {
 
     private   HashMap<Character,Integer> charsMap = new HashMap<> ();
@@ -42,8 +44,8 @@ public class SignService {
             Sign sign=new Sign();
             sign.setCharacter(character);
             sign.setOccurences(integer);
-            sign.setProbability((double)integer/sizeOfChars);
-            sign.setUnitOfInformation(unitOfInformation(sign.getProbability()));
+            sign.setProbability( (double)round((integer*100.0)/sizeOfChars)/100 );
+            sign.setUnitOfInformation( (double)round( unitOfInformation(sign.getProbability())*100.0 )/100  );
             signs.add(sign);
         });
 
@@ -67,6 +69,9 @@ public class SignService {
 
 
                 }
+
+          entropy= (double)round(entropy*100.0)/100;
+
     }
 
     public HashMap<Character, Integer> getCharsMap() {
