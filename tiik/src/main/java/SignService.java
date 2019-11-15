@@ -19,8 +19,10 @@ public class SignService {
     public  int countChars( FileReader fr ) throws IOException {
         int i,quantity=0;
         while ((i=fr.read()) != -1){
-            countChar((char)i);
-            ++quantity;
+            if(!Character.isWhitespace(i)) {
+                countChar((char) i);
+                ++quantity;
+            }
         }
 
         return quantity;

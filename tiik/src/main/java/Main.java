@@ -9,7 +9,7 @@ private static final SignService signService=new SignService();
 
     public static void main(String[] args) throws IOException {
 
-   /*     //initiate
+        //initiate
         String projectPath = System.getProperty("user.dir");
 
         // pass the path to the file as a parameter
@@ -17,20 +17,26 @@ private static final SignService signService=new SignService();
                 new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
 
      int quantity= signService.countChars(fr);
-
+            System.out.println(quantity);
+            System.out.println(signService.getCharsMap());
 signService.setCharStatistics(quantity);
         //quantity of input chracters
 signService.setEntropy();
         System.out.println(signService.getEntropy());
-*/
+
 
 Huffman huffman=new Huffman();
 
-huffman.getQueue().add(new Node('A',7));
-        huffman.getQueue().add(new Node('G',3));
-        huffman.getQueue().add(new Node('C',1));
-        huffman.getQueue().add(new Node('T',1));
-            huffman.getQueue().add(new Node('X',1));
+
+           huffman.getQueue().add(new Node('X',1));
+            huffman.getQueue().add(new Node('T',1));
+            huffman.getQueue().add(new Node('C',1));
+            huffman.getQueue().add(new Node('G',2));
+huffman.getQueue().add(new Node('A',5));
+
+
+
+
             System.out.println( huffman.getQueue());
        //     ((ArrayList<Node>)huffman.getQueue()).stream().min()
           //  huffman.getQueue().add(new Node('T',1));

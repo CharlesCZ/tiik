@@ -46,11 +46,12 @@ private Node findMinQueue(){
 
         for(int i=1;i<queue.size();++i)
         {
-            if(min.freq<queue.get(i).freq)
+            if(min.freq>queue.get(i).freq)
                 min=queue.get(i);
 
         }
         queue.remove(min);
+    System.out.println("MIN:"+min.character+min.freq);
         return min;
 
 }
