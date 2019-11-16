@@ -33,7 +33,7 @@ public class Huffman {
     public void setHuffmanQueue(int size) {
 
         queue = new PriorityQueue<>(size,(x,y)->{
-            return  Double.compare(x.sign.probability,y.sign.probability);
+            return  Double.compare(x.getSign().getProbability(),y.getSign().getProbability());
   });
         codes=new ArrayList<>();
     }
@@ -47,16 +47,16 @@ public class Huffman {
 
         while (queue.size()>1){
             Node z=new Node();
-            z.left=queue.poll();
-            System.out.println(z.left.sign.character);
-            System.out.println(z.left.sign.probability);
-            z.right=queue.poll();
+            z.setLeft(queue.poll());
+            System.out.println(z.getLeft().getSign().getCharacter());
+            System.out.println(z.getLeft().getSign().getProbability());
+            z.setRight(queue.poll());
             System.out.println("pomiedzy");
-            System.out.println(z.right.sign.character);
-            System.out.println(z.right.sign.probability);
+            System.out.println(z.getRight().getSign().getCharacter());
+            System.out.println(z.getRight().getSign().getProbability());
             System.out.println("z.sign.probability");
-            z.sign.probability=(double)round( 100*(z.left.sign.probability+z.right.sign.probability)  )/100;
-            System.out.println( z.sign.probability);
+            z.getSign().setProbability((double)round( 100*(z.getLeft().getSign().getProbability()+z.getRight().getSign().getProbability())  )/100);
+            System.out.println( z.getSign().getProbability());
             System.out.println("koniec");
             queue.add(z);
         }
@@ -69,9 +69,9 @@ public class Huffman {
 
     public void traversePreOrder(Node node) {
         if (node != null) {
-            System.out.print(" " + node.sign.character+node.sign.probability+" ");
-            traversePreOrder(node.left);
-            traversePreOrder(node.right);
+            System.out.print(" " + node.getSign().getCharacter()+node.getSign().getProbability()+" ");
+            traversePreOrder(node.getLeft());
+            traversePreOrder(node.getRight());
         }
     }
 
@@ -83,16 +83,16 @@ public class Huffman {
     public void preorder(Node node,String c){
 
 
-        if(node.left==null && node.right==null){
+        if(node.getLeft()==null && node.getRight()==null){
 
-            codes.add(String.valueOf(node.sign.character));
+            codes.add(String.valueOf(node.getSign().getCharacter()));
             codes.add(c);
             return;
         }
 
 
-    preorder(node.left,c+"0");
-        preorder(node.right,c+"1");
+    preorder(node.getLeft(),c+"0");
+        preorder(node.getRight(),c+"1");
 
 
         }
@@ -105,14 +105,14 @@ public class Huffman {
     public String preorderPath(Node node){
 
 
-        if(node.left==null && node.right==null){
+        if(node.getLeft()==null && node.getRight()==null){
 
-            return "1"+"["+node.sign.character+"]";
+            return "1"+"["+node.getSign().getCharacter()+"]";
 
         }
 
 
-      return "0"+  preorderPath(node.left)+  preorderPath(node.right);
+      return "0"+  preorderPath(node.getLeft())+  preorderPath(node.getRight());
 
 
     }
