@@ -21,7 +21,7 @@ private static final SignService signService=new SignService();
                 new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
 
      int quantity= signService.countChars(fr);
-            System.out.println(quantity);
+           System.out.println("Char quantity"+quantity);
             System.out.println(signService.getCharsMap());
 signService.setCharStatistics(quantity);
         //quantity of input chracters
@@ -40,11 +40,16 @@ huffman.setHuffmanQueue(10);
 huffman.insertSignsToQueue(signService.getSigns());
 
        Node root=huffman.getHuffmanTree();
-            huffman.traversePreOrder(root);
+          //  huffman.traversePreOrder(root);
            huffman.preorder(root,"");
            huffman.getCodes().forEach(System.out::println);
             System.out.println(huffman.preorderPath(root));
-
+        fr =
+                new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
+        System.out.println(huffman.encode(signService.getFileContent(fr)));
+        fr =
+                new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
+        System.out.println(signService.getBitsQuantity(huffman.preorderPath(root),huffman.encode(signService.getFileContent(fr))));
 
 }
 

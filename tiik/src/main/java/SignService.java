@@ -11,6 +11,15 @@ public class SignService {
     private   HashMap<Character,Integer> charsMap = new HashMap<> ();
     private List<Sign> signs=new ArrayList<>();
     private double entropy;
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     private   void countChar(char inputChar){
         if (charsMap.containsKey(inputChar)) {
@@ -29,6 +38,47 @@ public class SignService {
 
         return quantity;
     }
+
+    public String getFileContent( FileReader fr ) throws IOException {
+        int c;
+      content="";
+        while ((c=fr.read()) != -1){
+            if(!Character.isWhitespace(c)) {
+              content+=(char)c;
+            }
+        }
+
+        return content;
+    }
+
+    /**
+     * @return bits quantity from normal text
+     */
+    public int getBitsQuantity(){
+        return content.length()*8;
+    }
+
+
+    /**
+     * @param tree generated huffman tree like 01[A]01[G]01[T]01[C]1[X]
+     * @param code encoded text like 11111101110101000000
+     * @return
+     */
+    public int getBitsQuantity(String tree,String code) {
+int quntity=code.length();
+
+for(int i=0;i<tree.length();++i){
+    if(tree.charAt(i)=='0' || tree.charAt(i)=='1'){
+        ++quntity;
+    }else if(tree.charAt(i)!='[' && tree.charAt(i)!=']') {
+        quntity=quntity+8;
+    }
+}
+
+    return  quntity;
+    }
+
+
     public  double unitOfInformation(Double probabilityOfUnitOfInformation){
 
         return Math.log(1/probabilityOfUnitOfInformation)/ Math.log(2);

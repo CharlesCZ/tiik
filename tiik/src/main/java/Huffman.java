@@ -118,7 +118,26 @@ public class Huffman {
     }
 
 
+    /**
+     * @param content to encode
+     * @return encoded text
+     */
+public String encode(String content){
+String encodedString="";
+        for(int i=0;i<content.length();++i){
+            char letterToCode=content.charAt(i);
 
+            for(int j=0;j<codes.size();j=j+2){
+                if(codes.get(j).charAt(0)==letterToCode){
+                    encodedString+=codes.get(j+1);
+                    break;
+                }
+            }
+
+        }
+
+return encodedString;
+}
 
 
 }
