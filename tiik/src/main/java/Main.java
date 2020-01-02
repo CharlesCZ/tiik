@@ -52,7 +52,7 @@ huffman.insertSignsToQueue(signService.getSigns());
         System.out.println(signService.getBitsQuantity(huffman.preorderPath(root),huffman.encode(signService.getFileContent(fr))));
 
 
-        huffman.getHuffmanTree("01A01G01C1T");
+        huffman.getHuffmanTree("01[A]01[G]01[C]1[T]");
 
 }
 

@@ -102,8 +102,8 @@ public class Huffman {
      * @return Decoded from file Huffman tree
      */
     public Node getHuffmanTree(String treeCode){
+      treeCode=  treeCode.replaceAll("[\\[\\]]","");
         Node root=new Node();
-
         int i=0;
         while (!treeCode.isEmpty()){
             if(treeCode.charAt(i)=='1'){
