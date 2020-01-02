@@ -97,6 +97,86 @@ public class Huffman {
 
         }
 
+    /**
+     * Implementation of decoded Huffman tree
+     * @return Decoded from file Huffman tree
+     */
+    public Node getHuffmanTree(String treeCode){
+        Node root=new Node();
+
+        int i=0;
+        while (!treeCode.isEmpty()){
+            if(treeCode.charAt(i)=='1'){
+                generateHuffmanSubTree(treeCode.substring(0,i+2),root);
+                treeCode=treeCode.substring(i+2);
+                i=0;
+                break;
+
+            }else ++i;
+        }
+
+
+        while (!treeCode.isEmpty()){
+            if(treeCode.charAt(i)=='1'){
+                Node subTree=new Node();
+                generateHuffmanSubTree(treeCode.substring(0,i+2),subTree);
+                treeCode=treeCode.substring(i+2);
+                i=0;
+                //tree merge
+                huffmanTreeMerge(root,subTree);
+            }else ++i;
+        }
+        traversePreOrder2(root);
+        return root;
+
+
+    }
+    private void huffmanTreeMerge(Node root,Node node){
+        if(root.getLeft()!=null && root.getRight()==null){
+            root.setRight(node);
+            return;
+        }else if(root.getLeft()==null && root.getRight()==null){
+            return;
+        }
+
+        huffmanTreeMerge(root.getLeft(),node);
+        huffmanTreeMerge(root.getRight(),node);
+
+
+    }
+
+    private void generateHuffmanSubTree(String treeCode,Node node){
+
+        if(!treeCode.isEmpty()) {
+            if (node == null) {
+                node = new Node();
+            }
+
+            if (treeCode.charAt(0) == '1') {
+
+                Sign sign = new Sign();
+                sign.setCharacter(treeCode.charAt(1));
+                //    System.out.println(treeCode.charAt(1));
+                node.setSign(sign);
+                return;
+            }else if(treeCode.charAt(0) == '0'){
+                node.setLeft(new Node());
+                generateHuffmanSubTree(treeCode.substring(1),node.getLeft());
+            }
+        }
+    }
+
+    private void traversePreOrder2(Node node) {
+        if (node != null) {
+
+            if(node.getLeft()==null && node.getRight()==null)
+                System.out.print("    "+"1"+node.getSign().getCharacter()+"    ");
+            else
+                System.out.print("0");
+            traversePreOrder2(node.getLeft());
+            traversePreOrder2(node.getRight());
+        }
+    }
 
     /**
      * @param node Tree root

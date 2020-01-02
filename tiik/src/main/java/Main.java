@@ -51,6 +51,9 @@ huffman.insertSignsToQueue(signService.getSigns());
                 new FileReader(projectPath + "\\src\\main\\resources\\test.txt");
         System.out.println(signService.getBitsQuantity(huffman.preorderPath(root),huffman.encode(signService.getFileContent(fr))));
 
+
+        huffman.getHuffmanTree("01A01G01C1T");
+
 }
 
 
