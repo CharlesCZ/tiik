@@ -126,7 +126,7 @@ public class Huffman {
                 huffmanTreeMerge(root,subTree);
             }else ++i;
         }
-        traversePreOrder2(root);
+  //      traversePreOrder2(root);
         return root;
 
 
@@ -217,6 +217,48 @@ String encodedString="";
         }
 
 return encodedString;
+}
+
+    /**
+     * Way of decoding text with Huffman algorithm static version
+     * @param encodedTree  encoded Tree like 01[A]01[G]01[T]01[C]1[X]
+     * @param encodedText encoded text like 1111110111010100000
+     * @return decoded text
+     */
+public String decode(String encodedTree, String encodedText){
+    Node root=getHuffmanTree(encodedTree);
+return decodeHuffman(encodedText,root,root);
+
+
+
+}
+
+
+    /**
+     * @param encodedText encoded text
+     * @param node
+     * @param root needed to recure
+     * @return decoded text
+     */
+private String decodeHuffman(String encodedText,Node node,Node root){
+
+    if(!encodedText.isEmpty()) {
+        if (node.getLeft() == null && node.getRight() == null) {
+            return node.getSign().getCharacter().toString() + decodeHuffman(encodedText, root, root);
+        }
+
+        if (encodedText.charAt(0) == '0') {
+            return "" + decodeHuffman(encodedText.substring(1), node.getLeft(), root);
+        } else if (encodedText.charAt(0) == '1') {
+            return "" + decodeHuffman(encodedText.substring(1), node.getRight(), root);
+        }
+    }else{
+        if (node.getLeft() == null && node.getRight() == null) {
+            return node.getSign().getCharacter().toString();
+        }
+
+    }
+    return "";
 }
 
 

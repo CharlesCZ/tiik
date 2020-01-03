@@ -52,8 +52,8 @@ huffman.insertSignsToQueue(signService.getSigns());
         System.out.println(signService.getBitsQuantity(huffman.preorderPath(root),huffman.encode(signService.getFileContent(fr))));
 
 
-        huffman.getHuffmanTree("01[A]01[G]01[C]1[T]");
-
+     //   huffman.getHuffmanTree("01[A]01[G]01[T]01[C]1[X]");
+        System.out.println(huffman.decode("01[A]01[G]01[T]01[C]1[X]","11111101110101000000"));
 }
 
 
