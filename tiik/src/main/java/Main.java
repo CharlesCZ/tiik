@@ -12,7 +12,6 @@ public class Main {
 private static final SignService signService=new SignService();
 
     public static void main(String[] args) throws IOException {
-
         //initiate
         String projectPath = System.getProperty("user.dir");
 
@@ -53,7 +52,8 @@ huffman.insertSignsToQueue(signService.getSigns());
 
 
      //   huffman.getHuffmanTree("01[A]01[G]01[T]01[C]1[X]");
-        System.out.println(huffman.decode("01[A]01[G]01[T]01[C]1[X]","11111101110101000000"));
+        System.out.println(huffman.decode("00001[i]1[\n" +
+                "]1[e]01[a]1[k]001[C]01[ ]1[s]01[z]01[y]01[r]1[l]","100001110010111101110000110011000101101011111101010110110000"));
 }
 
 
