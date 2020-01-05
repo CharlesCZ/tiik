@@ -1,5 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,27 +30,28 @@ public class SignService {
             charsMap.putIfAbsent(inputChar,1);
     }
     public  int countChars( FileReader fr ) throws IOException {
-        int i,quantity=0;
-        while ((i=fr.read()) != -1){
-            if(!Character.isWhitespace(i)) {
-                countChar((char) i);
-                ++quantity;
-            }
+        int quantity=0;
+
+
+        CharacterIterator iter=new StringCharacterIterator(getFileContent(fr));
+        for(char c = iter.first(); c != CharacterIterator.DONE; c = iter.next()) {
+           countChar(c);
+           ++quantity;
         }
 
-        return quantity;
+     return quantity;
     }
 
     public String getFileContent( FileReader fr ) throws IOException {
-        int c;
-      content="";
-        while ((c=fr.read()) != -1){
-            if(!Character.isWhitespace(c)) {
-              content+=(char)c;
-            }
-        }
+        int i;
 
-        return content;
+        StringBuilder text= new StringBuilder();
+        while ((i=fr.read()) != -1){
+            text.append((char) i);
+        }
+        text = new StringBuilder(text.toString().replaceAll("\r\n", "\n"));
+
+        return text.toString();
     }
 
     /**
