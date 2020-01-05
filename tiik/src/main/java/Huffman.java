@@ -1,5 +1,7 @@
 import sun.misc.Queue;
 
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
 import java.util.*;
 import java.util.stream.Collectors;
 import static java.lang.Math.round;
@@ -97,74 +99,52 @@ public class Huffman {
 
         }
 
+
+    /**
+     * Way of decoding text with Huffman algorithm static version
+     * @param encodedTree  encoded Tree like 01[A]01[G]01[T]01[C]1[X]
+     * @param encodedText encoded text like 1111110111010100000
+     * @return decoded text
+     */
+    public String decode(String encodedTree, String encodedText){
+        Node root=getHuffmanTree(encodedTree);
+        traversePreOrder2(root);
+        return decodeHuffman(encodedText,root,root);
+
+
+
+    }
+
     /**
      * Implementation of decoded Huffman tree
      * @return Decoded from file Huffman tree
      */
-    public Node getHuffmanTree(String treeCode){
-      treeCode=  treeCode.replaceAll("[\\[\\]]","");
-        Node root=new Node();
-        int i=0;
-        while (!treeCode.isEmpty()){
-            if(treeCode.charAt(i)=='1'){
-                generateHuffmanSubTree(treeCode.substring(0,i+2),root);
-                treeCode=treeCode.substring(i+2);
-                i=0;
-                break;
-
-            }else ++i;
-        }
-
-
-        while (!treeCode.isEmpty()){
-            if(treeCode.charAt(i)=='1'){
-                Node subTree=new Node();
-                generateHuffmanSubTree(treeCode.substring(0,i+2),subTree);
-                treeCode=treeCode.substring(i+2);
-                i=0;
-                //tree merge
-                huffmanTreeMerge(root,subTree);
-            }else ++i;
-        }
-  //      traversePreOrder2(root);
-        return root;
-
-
-    }
-    private void huffmanTreeMerge(Node root,Node node){
-        if(root.getLeft()!=null && root.getRight()==null){
-            root.setRight(node);
-            return;
-        }else if(root.getLeft()==null && root.getRight()==null){
-            return;
-        }
-
-        huffmanTreeMerge(root.getLeft(),node);
-        huffmanTreeMerge(root.getRight(),node);
-
-
+    Node getHuffmanTree(String treeCode) {
+        return generateHuffmanSubTree(new StringCharacterIterator(treeCode));
     }
 
-    private void generateHuffmanSubTree(String treeCode,Node node){
 
-        if(!treeCode.isEmpty()) {
-            if (node == null) {
-                node = new Node();
-            }
 
-            if (treeCode.charAt(0) == '1') {
-
-                Sign sign = new Sign();
-                sign.setCharacter(treeCode.charAt(1));
-                //    System.out.println(treeCode.charAt(1));
-                node.setSign(sign);
-                return;
-            }else if(treeCode.charAt(0) == '0'){
-                node.setLeft(new Node());
-                generateHuffmanSubTree(treeCode.substring(1),node.getLeft());
-            }
+    Node generateHuffmanSubTree(CharacterIterator iterChar) {
+        char ch = iterChar.current();
+        iterChar.next();
+        Node node = new Node();
+        if (ch == '1') { // a leaf
+            Sign sign = new Sign();
+            sign.setCharacter(iterChar.next()); // skip "[" and get char
+            iterChar.next();
+            iterChar.next(); // skip "]"
+            node.setSign(sign);
+        } else { // can only be "0", so no IF is needed here
+            System.out.println("before LEFT branch");
+            node.setLeft(generateHuffmanSubTree(iterChar));
+            System.out.println("before Right branch");
+            node.setRight(generateHuffmanSubTree(iterChar));
         }
+        return node;
     }
+
+
 
     private void traversePreOrder2(Node node) {
         if (node != null) {
@@ -219,19 +199,7 @@ String encodedString="";
 return encodedString;
 }
 
-    /**
-     * Way of decoding text with Huffman algorithm static version
-     * @param encodedTree  encoded Tree like 01[A]01[G]01[T]01[C]1[X]
-     * @param encodedText encoded text like 1111110111010100000
-     * @return decoded text
-     */
-public String decode(String encodedTree, String encodedText){
-    Node root=getHuffmanTree(encodedTree);
-return decodeHuffman(encodedText,root,root);
 
-
-
-}
 
 
     /**
