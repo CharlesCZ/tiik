@@ -69,11 +69,11 @@ public class SignService {
      */
     public int getBitsQuantity(String tree,String code) {
 int quntity=code.length();
-
+tree=tree.replaceAll("[\\[\\]]","");
 for(int i=0;i<tree.length();++i){
     if(tree.charAt(i)=='0' || tree.charAt(i)=='1'){
         ++quntity;
-    }else if(tree.charAt(i)!='[' && tree.charAt(i)!=']') {
+    }else if(tree.charAt(i)!='0' && tree.charAt(i)!='1') {
         quntity=quntity+8;
     }
 }
