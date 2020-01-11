@@ -1,3 +1,5 @@
+package src;
+
 public class Sign {
 
   private Character character;
@@ -45,7 +47,7 @@ public class Sign {
 
     @Override
     public String toString() {
-        return "Sign{" +
+        return "src.Sign{" +
                 "character=" + character +
                 ", probability=" + probability +
                 ", unitOfInformation=" + unitOfInformation +

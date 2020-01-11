@@ -1,0 +1,1 @@
+java -Xss1024m  -jar tiik-1.0-SNAPSHOT.jar

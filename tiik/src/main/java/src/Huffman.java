@@ -1,9 +1,9 @@
-import sun.misc.Queue;
+package src;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.*;
-import java.util.stream.Collectors;
+
 import static java.lang.Math.round;
 public class Huffman {
 
@@ -42,8 +42,8 @@ public class Huffman {
 
 
     /**
-     * Implementation of Huffman tree alg from Thomas H. Cormen Introduction to algorithms
-     * @return Huffman tree
+     * Implementation of src.Huffman tree alg from Thomas H. Cormen Introduction to algorithms
+     * @return src.Huffman tree
      */
     public Node getHuffmanTree(){
 
@@ -78,7 +78,7 @@ public class Huffman {
     }
 
     /**
-     * method creates codes based on Huffman tree
+     * method creates codes based on src.Huffman tree
      * @param node  Tree root
      * @param c empty string like ""
      */
@@ -101,7 +101,7 @@ public class Huffman {
 
 
     /**
-     * Way of decoding text with Huffman algorithm static version
+     * Way of decoding text with src.Huffman algorithm static version
      * @param encodedTree  encoded Tree like 01[A]01[G]01[T]01[C]1[X]
      * @param encodedText encoded text like 1111110111010100000
      * @return decoded text
@@ -116,8 +116,8 @@ public class Huffman {
     }
 
     /**
-     * Implementation of decoded Huffman tree
-     * @return Decoded from file Huffman tree
+     * Implementation of decoded src.Huffman tree
+     * @return Decoded from file src.Huffman tree
      */
     Node getHuffmanTree(String treeCode) {
         return generateHuffmanSubTree(new StringCharacterIterator(treeCode));
@@ -136,9 +136,8 @@ public class Huffman {
             iterChar.next(); // skip "]"
             node.setSign(sign);
         } else { // can only be "0", so no IF is needed here
-            System.out.println("before LEFT branch");
+
             node.setLeft(generateHuffmanSubTree(iterChar));
-            System.out.println("before Right branch");
             node.setRight(generateHuffmanSubTree(iterChar));
         }
         return node;
