@@ -2,7 +2,7 @@ package src;
 
 public class Sign {
 
-  private Character character;
+    private Character character;
 
     private   Double probability;
 
@@ -47,7 +47,7 @@ public class Sign {
 
     @Override
     public String toString() {
-        return "src.Sign{" +
+        return "Sign{" +
                 "character=" + character +
                 ", probability=" + probability +
                 ", unitOfInformation=" + unitOfInformation +

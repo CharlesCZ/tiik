@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane hgap="10" prefHeight="600.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controller">
+   <MenuBar prefHeight="25.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.valignment="TOP">
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+<!--             <MenuItem text="New" />-->
+             <MenuItem fx:id="open" onAction="#handleOpenAction" text="Open" />
+<!--             <MenuItem text="Save" />-->
+<!--             <MenuItem text="Save As" />-->
+<!--             <SeparatorMenuItem />-->
+<!--           <MenuItem mnemonicParsing="false" text="Close" />-->
+         </items>
+       </Menu>
+<!--       <Menu mnemonicParsing="false" text="Edit">-->
+<!--         <items>-->
+<!--           <MenuItem mnemonicParsing="false" text="Delete" />-->
+<!--         </items>-->
+<!--       </Menu>-->
+<!--       <Menu mnemonicParsing="false" text="Help">-->
+<!--         <items>-->
+<!--           <MenuItem mnemonicParsing="false" text="About" />-->
+<!--         </items>-->
+<!--       </Menu>-->
+     </menus>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
+   </MenuBar>
+    <Text text="Huffman encoding" wrappingWidth="143.8125" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+
+                <Label text="Char quantity :" GridPane.rowIndex="2" />
+
+                <TextField fx:id="charQuantity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="Entropy :" GridPane.rowIndex="3" />
+
+    <TextField fx:id="entropy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="File content:" GridPane.rowIndex="4" />
+        <TextArea fx:id="fileContent" prefHeight="100.0" prefWidth="580.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+
+   <TabPane prefHeight="361.0" prefWidth="589.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="7">
+     <tabs>
+       <Tab fx:id="tsigns" text="Signs">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="600.0">
+                  <children>
+                      <TableView fx:id="tableSigns" prefHeight="300.0" prefWidth="580.0">
+                          <columns>
+
+                          </columns>
+                      </TableView>
+                  </children></AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Code list">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                  <children>
+                   <TableView fx:id="tableCodes" prefHeight="300.0" prefWidth="580.0">
+                   <columns>
+
+                   </columns>
+                   </TableView>
+                  </children>
+           </AnchorPane>
+         </content>
+       </Tab>
+         <Tab text="Preorder path">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                     <children>
+                         <TextArea fx:id="preOrderPath"></TextArea>
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+         <Tab text="Bits Quantity">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                     <children>
+                         <TextArea fx:id="bitsQuantity"></TextArea>
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+         <Tab text="Encoded file">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                     <children>
+                         <TextArea fx:id="encoded"></TextArea>
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+         <Tab text="Decoded file">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                     <children>
+                         <TextArea fx:id="decoded"></TextArea>
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+         <Tab text="Compression rate">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="580.0">
+                     <children>
+                         <TextArea fx:id="compression">
+
+                         </TextArea>
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+
+</GridPane>

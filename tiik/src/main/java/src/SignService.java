@@ -37,11 +37,11 @@ public class SignService {
 
         CharacterIterator iter=new StringCharacterIterator(getFileContent(fr));
         for(char c = iter.first(); c != CharacterIterator.DONE; c = iter.next()) {
-           countChar(c);
-           ++quantity;
+            countChar(c);
+            ++quantity;
         }
 
-     return quantity;
+        return quantity;
     }
 
     public String getFileContent( FileReader fr ) throws IOException {
@@ -52,8 +52,8 @@ public class SignService {
             text.append((char) i);
         }
         text = new StringBuilder(text.toString().replaceAll("\r\n", "\n"));
-
-        return text.toString();
+        setContent(text.toString());
+        return this.content;
     }
 
     /**
@@ -70,17 +70,17 @@ public class SignService {
      * @return
      */
     public int getBitsQuantity(String tree,String code) {
-int quntity=code.length();
-tree=tree.replaceAll("[\\[\\]]","");
-for(int i=0;i<tree.length();++i){
-    if(tree.charAt(i)=='0' || tree.charAt(i)=='1'){
-        ++quntity;
-    }else if(tree.charAt(i)!='0' && tree.charAt(i)!='1') {
-        quntity=quntity+8;
-    }
-}
+        int quntity=code.length();
+        tree=tree.replaceAll("[\\[\\]]","");
+        for(int i=0;i<tree.length();++i){
+            if(tree.charAt(i)=='0' || tree.charAt(i)=='1'){
+                ++quntity;
+            }else if(tree.charAt(i)!='0' && tree.charAt(i)!='1') {
+                quntity=quntity+8;
+            }
+        }
 
-    return  quntity;
+        return  quntity;
     }
 
 
@@ -105,7 +105,7 @@ for(int i=0;i<tree.length();++i){
         });
 
 
-        signs.forEach(System.out::println);
+//        signs.forEach(System.out::println);
 
     }
 
@@ -115,17 +115,17 @@ for(int i=0;i<tree.length();++i){
 
     public void setEntropy() {
 
-                if(signs.size()>0){
-                    signs.forEach(sign -> {
-                        if(sign.getProbability()>0) {
-                            entropy += sign.getProbability() * unitOfInformation(sign.getProbability());
-                        }
-                    });
-
-
+        if(signs.size()>0){
+            signs.forEach(sign -> {
+                if(sign.getProbability()>0) {
+                    entropy += sign.getProbability() * unitOfInformation(sign.getProbability());
                 }
+            });
 
-          entropy= (double)round(entropy*100.0)/100;
+
+        }
+
+        entropy= (double)round(entropy*100.0)/100;
 
     }
 

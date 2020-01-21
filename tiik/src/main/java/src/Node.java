@@ -1,7 +1,7 @@
 package src;
 
 class Node{
-   private Sign sign;
+    private Sign sign;
     private   Node left;
     private   Node right;
 
@@ -51,7 +51,7 @@ class Node{
 
     @Override
     public String toString() {
-        return " src.Node{" +
+        return " Node{" +
                 "character=" + sign.getCharacter() +
                 ", freq=" + sign.getProbability() +
                 ", left=" + left +
